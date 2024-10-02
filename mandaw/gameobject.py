@@ -1,16 +1,15 @@
 import sdl2, sdl2.ext
 from mandaw.color import Color
 
-class GameObject(object):
-    def __init__(self, window, width = 20, height = 20, x = 0, y = 0, color = Color(255, 255, 255)):
-        self.entity = sdl2.ext.Entity(world = window.world)
 
+class GameObject(object):
+    def __init__(self, window, width=20, height=20, x=0, y=0, color=Color(255, 255, 255)):
+        self.entity = sdl2.ext.Entity(world=window.world)
         self.window = window
         self.width = width
         self.height = height
         self.x = x
         self.y = y
-
         self.color = color
 
         self.entity.sprite = self.entity.world.factory.from_color(self.color, (0, 0))
@@ -19,14 +18,13 @@ class GameObject(object):
         self.entity.sprite = self.entity.world.factory.from_color(self.color, (self.width, self.height))
         self.entity.sprite.position = self.x, self.y
 
-    def collide(self, rect):
+    def collide(self, other_rect):
         left, top, right, bottom = self.entity.sprite.area
-        bleft, btop, bright, bbottom = rect.entity.sprite.area
-
+        bleft, btop, bright, bbottom = other_rect.entity.sprite.area
         return(bleft < right and bright > left and btop < bottom and bbottom > top)
 
-    def collidelist(self, rect):
-        collisions = [True if self.collide(rect[i]) else False for i in range(len(rect))]
+    def collidelist(self, other_rect):
+        collisions = [True if self.collide(other_rect[i]) else False for i in range(len(other_rect))]
         return any(collisions)
 
     def center(self):

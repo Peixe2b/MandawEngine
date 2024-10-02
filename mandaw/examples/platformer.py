@@ -42,11 +42,11 @@ class PlatformerController2D(GameObject):
 
     def movement(self):
         # Player movement
-        if mandaw.input.pressed[mandaw.input.keys["A"]]:
+        if mandaw.input.keyboard_state[mandaw.input.keys["A"]]:
             self.pos_x -= self.speed * mandaw.dt
             self.direction = 0
 
-        if mandaw.input.pressed[mandaw.input.keys["D"]]:
+        if mandaw.input.keyboard_state[mandaw.input.keys["D"]]:
             self.pos_x += self.speed * mandaw.dt
             self.direction = 1
 
@@ -66,26 +66,26 @@ class PlatformerController2D(GameObject):
         if self.collidelist(objects):
             self.velocity_y = 1
 
-            if self.direction == 0 and not mandaw.input.pressed[mandaw.input.keys["A"]]:
+            if self.direction == 0 and not mandaw.input.keyboard_state[mandaw.input.keys["A"]]:
                 self.pos_x += 10
 
                 if self.pos_x >= 0:
                     self.pos_x = 0
             
-            if self.direction == 1 and not mandaw.input.pressed[mandaw.input.keys["D"]]:
+            if self.direction == 1 and not mandaw.input.keyboard_state[mandaw.input.keys["D"]]:
                 self.pos_x -= 10
 
                 if self.pos_x <= 0:
                     self.pos_x = 0
 
         if not self.collidelist(objects):
-            if self.direction == 0 and not mandaw.input.pressed[mandaw.input.keys["A"]]:
+            if self.direction == 0 and not mandaw.input.keyboard_state[mandaw.input.keys["A"]]:
                 self.pos_x += 0.1 * mandaw.dt
 
                 if self.pos_x >= 0:
                     self.pos_x = 0
             
-            if self.direction == 1 and not mandaw.input.pressed[mandaw.input.keys["D"]]:
+            if self.direction == 1 and not mandaw.input.keyboard_state[mandaw.input.keys["D"]]:
                 self.pos_x -= 0.1 * mandaw.dt
 
                 if self.pos_x <= 0:
@@ -98,7 +98,7 @@ class PlatformerController2D(GameObject):
 
     def jump(self):
         # Jumping
-        if self.is_jumping == False and mandaw.input.pressed[mandaw.input.keys["SPACE"]]:
+        if self.is_jumping == False and mandaw.input.keyboard_state[mandaw.input.keys["SPACE"]]:
             self.is_jumping = True
             if not self.collidelist(objects):
                 self.is_jumping = False

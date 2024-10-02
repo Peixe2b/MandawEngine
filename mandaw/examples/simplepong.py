@@ -20,9 +20,9 @@ class Paddle(GameObject):
         self.ball = None
 
     def player_movement(self):
-        if mandaw.input.pressed[mandaw.input.keys["UP"]]:
+        if mandaw.input.keyboard_state[mandaw.input.keys["UP"]]:
             self.y -= 2
-        if mandaw.input.pressed[mandaw.input.keys["DOWN"]]:
+        if mandaw.input.keyboard_state[mandaw.input.keys["DOWN"]]:
             self.y += 2
 
         if self.y >= mandaw.height - 30:

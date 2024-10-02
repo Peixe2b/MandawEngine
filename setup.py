@@ -1,6 +1,7 @@
 from distutils.core import setup
 
-setup(name='Mandaw',
+setup(
+      name='Mandaw',
       version='2.0.1',
       description='A 2D Python GameEngine Made With PySDL2',
       author='mandaw2014',
@@ -10,4 +11,4 @@ setup(name='Mandaw',
       packages=['mandaw'],
       package_dir={'mandaw': 'mandaw'},
       install_requires=["pysdl2"]
-      )
+)
