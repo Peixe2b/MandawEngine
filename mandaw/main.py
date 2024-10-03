@@ -20,7 +20,7 @@ class Mandaw:
         self.running: bool = True
         
         self.world: Any = sdl2.ext.World()
-        self.window: Any = sdl2.SDL_CreateWindow(self.title, size = (self.width, self.height))        
+        self.window: Any = sdl2.ext.Window(self.title, size = (self.width, self.height))        
         self.__factory: Any = sdl2.ext.SpriteFactory(sdl2.ext.SOFTWARE)
         self.world.factory = sdl2.ext.SpriteFactory(sdl2.ext.SOFTWARE)
 
