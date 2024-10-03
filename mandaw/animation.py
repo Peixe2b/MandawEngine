@@ -4,9 +4,13 @@ from typing import List, Any
 from mandaw.gameobject import GameObject
 
 
+__al__ = [
+    "Animation"
+]
+
 class Animation(GameObject):
-    def __init__(self, anim_folder, anim_time):
-        # super().__init__()
+    def __init__(self, window: Any, anim_folder: str, anim_time: int):
+        super().__init__(window)
         self.frames: List[Any] = []
         self.anim_time: int = anim_time
         self.folder: str = anim_folder

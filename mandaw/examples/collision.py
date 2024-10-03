@@ -31,16 +31,16 @@ n = 1
 
 while True:
     # if mandaw.input.keyboard_state[Keys.UP]
-    if mandaw.input.keyboard_state[mandaw.input.keys["UP"]]:
-        player.y -= 1 * mandaw.dt
-    if mandaw.input.keyboard_state[mandaw.input.keys["LEFT"]]:
-        player.x -= 1 * mandaw.dt
-    if mandaw.input.keyboard_state[mandaw.input.keys["DOWN"]]:
-        player.y += 1 * mandaw.dt
-    if mandaw.input.keyboard_state[mandaw.input.keys["RIGHT"]]:
-        player.x += 1 * mandaw.dt
+    if mandaw.input.__press[mandaw.input.keys["UP"]]:
+        player.y -= 1 * mandaw.__dt
+    if mandaw.input.__press[mandaw.input.keys["LEFT"]]:
+        player.x -= 1 * mandaw.__dt
+    if mandaw.input.__press[mandaw.input.keys["DOWN"]]:
+        player.y += 1 * mandaw.__dt
+    if mandaw.input.__press[mandaw.input.keys["RIGHT"]]:
+        player.x += 1 * mandaw.__dt
       
-    if mandaw.input.keyboard_state[mandaw.input.keys["G"]]:
+    if mandaw.input.__press[mandaw.input.keys["G"]]:
         player.center()
 
     if player.collidelist(objects):

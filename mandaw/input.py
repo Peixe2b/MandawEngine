@@ -1,19 +1,57 @@
 import sdl2
 
+from typing import Union, Any
+from abc import ABC, abstractmethod
 
-class Mouse:
-    def __init__(self) -> None:
+
+all = [
+    "Mouse", "Keyboard",
+    "Input"
+]
+
+class Device(ABC):
+    @abstractmethod
+    def initialize(self):
+        pass
+
+    @abstractmethod
+    def get_pressed(self):
+        pass
+
+    @abstractmethod
+    def get_info(self):
+        pass
+
+    @abstractmethod
+    def disconnect(self):
         pass
 
 
-class Keyboard:
+class Mouse(Device):
+    def __init__(self) -> None:
+        pass
+
+    def set_pos(self, x: int, y: int) -> None:
+        pass
+
+    def get_pos(self) -> tuple:
+        return (0, 0)
+
+    def get_pressed(self):
+        return super().get_pressed()
+
+    def set_visible(self, visible: bool) -> None:
+        pass
+
+
+class Keyboard(Device):
     pass
 
 
 class Input:
     def __init__(self):
-        self.keyboard_state = sdl2.SDL_GetKeyboardState(None)
-        
+        self.__press: Any = sdl2.SDL_GetKeyboardState(None)
+        self.device: Union[Device, None] = None
         self.keys: dict = {
             "UP":sdl2.SDL_SCANCODE_UP, "DOWN":sdl2.SDL_SCANCODE_DOWN,
             "LEFT":sdl2.SDL_SCANCODE_LEFT, "RIGHT":sdl2.SDL_SCANCODE_RIGHT,
@@ -53,5 +91,10 @@ class Input:
             "SPACE":sdl2.SDL_SCANCODE_SPACE, "PLUS":sdl2.SDL_SCANCODE_KP_PLUS,
         }
 
-    def press(self, input):
-        pass
+    def get_device_state(self) -> Union[Device, None]:
+        return self.device
+
+    @property
+    def Press(self) -> Any:
+        return self.__press
+    
