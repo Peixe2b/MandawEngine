@@ -7,4 +7,5 @@ square.center()
 
 
 while True:
+    square.draw()
     game.run()
