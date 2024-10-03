@@ -1,5 +1,3 @@
-from logging import log, warning, error # Logger for errors and messages
-
 
 class MandawBasicException(Exception):
     """ Manda basic raise exception """
@@ -9,7 +7,7 @@ class MandawError(Exception):
     """ Message error for call func in SDL """
     
     def __init__(self, message: str) -> None:
-        self.message = message
+        self.message: str = message
         super().__init__(message)
     
     def __repr__(self) -> str:
@@ -19,7 +17,7 @@ class MandawError(Exception):
 class MandawErrorType(TypeError):
     """ Error Mandaw variables types, example: Colors, InputType, etc... """
     def __init__(self, message: str) -> None:
-        self.message = message
+        self.message: str = message
         super().__init__(message)
     
     def __repr__(self) -> str:

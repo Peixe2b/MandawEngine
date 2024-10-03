@@ -13,7 +13,8 @@ class Keyboard:
 class Input:
     def __init__(self):
         self.keyboard_state = sdl2.SDL_GetKeyboardState(None)
-        self.keys = {
+        
+        self.keys: dict = {
             "UP":sdl2.SDL_SCANCODE_UP, "DOWN":sdl2.SDL_SCANCODE_DOWN,
             "LEFT":sdl2.SDL_SCANCODE_LEFT, "RIGHT":sdl2.SDL_SCANCODE_RIGHT,
             "A":sdl2.SDL_SCANCODE_A, "B":sdl2.SDL_SCANCODE_B,

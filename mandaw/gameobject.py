@@ -1,16 +1,18 @@
 import sdl2, sdl2.ext
+
+from typing import Any
 from mandaw.color import Color
 
 
 class GameObject(object):
     def __init__(self, window, width=20, height=20, x=0, y=0, color=Color(255, 255, 255)):
-        self.entity = sdl2.ext.Entity(world=window.world)
-        self.window = window
-        self.width = width
-        self.height = height
-        self.x = x
-        self.y = y
-        self.color = color
+        self.entity: Any = sdl2.ext.Entity(world=window.world)
+        self.window: Any = window
+        self.width: int = width
+        self.height: int = height
+        self.x: int = x
+        self.y: int = y
+        self.color: Color = color
 
         self.entity.sprite = self.entity.world.factory.from_color(self.color, (0, 0))
     

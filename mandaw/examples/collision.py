@@ -30,6 +30,7 @@ objects.append(object4)
 n = 1
 
 while True:
+    # if mandaw.input.keyboard_state[Keys.UP]
     if mandaw.input.keyboard_state[mandaw.input.keys["UP"]]:
         player.y -= 1 * mandaw.dt
     if mandaw.input.keyboard_state[mandaw.input.keys["LEFT"]]:
