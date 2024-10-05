@@ -1,7 +1,7 @@
 import sdl2, sdl2.ext
 
 from typing import Any
-from mandaw.color import Color
+from mandaw.core.color import Color
 
 
 __all__ = [
@@ -17,7 +17,6 @@ class GameObject(object):
         self.x: int = x
         self.y: int = y
         self.color: Color = color
-
         self.entity.sprite = self.entity.world.factory.from_color(self.color, (0, 0))
     
     def draw(self):
@@ -33,12 +32,12 @@ class GameObject(object):
         collisions = [True if self.collide(other_rect[i]) else False for i in range(len(other_rect))]
         return any(collisions)
 
-    def center(self):
+    def center_pos(self):
         self.x = int(self.window.width / 2) - int(self.width / 2)
         self.y = int(self.window.height / 2) - int(self.height / 2)
 
-    def center_x(self):
+    def center_x_pos(self):
         self.x = int(self.window.width / 2) - int(self.width / 2)
 
-    def center_y(self):
+    def center_y_pos(self):
         self.y = int(self.window.height / 2) - int(self.height / 2)

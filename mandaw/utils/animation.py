@@ -1,7 +1,7 @@
 import os
 
 from typing import List, Any
-from mandaw.gameobject import GameObject
+from mandaw.utils.gameobject import GameObject
 
 
 __al__ = [

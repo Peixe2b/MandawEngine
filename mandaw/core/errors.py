@@ -1,9 +1,9 @@
 
-class MandawBasicException(Exception):
+class MandawException(Exception):
     """ Manda basic raise exception """
 
 
-class MandawError(Exception):
+class MandawSDLError(Exception):
     """ Message error for call func in SDL """
     
     def __init__(self, message: str) -> None:

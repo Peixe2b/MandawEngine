@@ -1,0 +1,72 @@
+import sdl2
+from typing import TypeAlias
+
+
+ARROWS: dict = {
+    "UP": sdl2.SDL_SCANCODE_UP,
+    "DOWN": sdl2.SDL_SCANCODE_DOWN,
+    "LEFT": sdl2.SDL_SCANCODE_LEFT,
+    "RIGHT": sdl2.SDL_SCANCODE_RIGHT,
+}
+
+LETTERS: dict = {chr(i): sdl2.SDL_SCANCODE_A + (i - ord('A')) for i in range(ord('A'), ord('Z') + 1)}
+
+NUMBERS: dict = {str(i): sdl2.SDL_SCANCODE_0 + i for i in range(10)}
+
+FUNCTION_KEYS: dict = {f"F{i}": sdl2.SDL_SCANCODE_F1 + (i - 1) for i in range(1, 16)}
+
+MODIFIER_KEYS: dict = {
+    "LCTRL": sdl2.SDL_SCANCODE_LCTRL,
+    "RCTRL": sdl2.SDL_SCANCODE_RCTRL,
+    "LSHIFT": sdl2.SDL_SCANCODE_LSHIFT,
+    "RSHIFT": sdl2.SDL_SCANCODE_RSHIFT,
+    "LALT": sdl2.SDL_SCANCODE_LALT,
+    "RALT": sdl2.SDL_SCANCODE_RALT,
+    "LGUI": sdl2.SDL_SCANCODE_LGUI,
+    "RGUI": sdl2.SDL_SCANCODE_RGUI,
+}
+
+NUMPAD_KEYS: dict = {
+    "KP_0": sdl2.SDL_SCANCODE_KP_0,
+    "KP_1": sdl2.SDL_SCANCODE_KP_1,
+    "KP_2": sdl2.SDL_SCANCODE_KP_2,
+    "KP_3": sdl2.SDL_SCANCODE_KP_3,
+    "KP_4": sdl2.SDL_SCANCODE_KP_4,
+    "KP_5": sdl2.SDL_SCANCODE_KP_5,
+    "KP_6": sdl2.SDL_SCANCODE_KP_6,
+    "KP_7": sdl2.SDL_SCANCODE_KP_7,
+    "KP_8": sdl2.SDL_SCANCODE_KP_8,
+    "KP_9": sdl2.SDL_SCANCODE_KP_9,
+    "KP_PLUS": sdl2.SDL_SCANCODE_KP_PLUS,
+    "KP_MINUS": sdl2.SDL_SCANCODE_KP_MINUS,
+    "KP_MULTIPLY": sdl2.SDL_SCANCODE_KP_MULTIPLY,
+    "KP_DIVIDE": sdl2.SDL_SCANCODE_KP_DIVIDE,
+    "KP_ENTER": sdl2.SDL_SCANCODE_KP_ENTER,
+}
+
+PLUS_KEYS: dict = {
+    "ESCAPE": sdl2.SDL_SCANCODE_ESCAPE,
+    "RETURN": sdl2.SDL_SCANCODE_RETURN,
+    "SPACE": sdl2.SDL_SCANCODE_SPACE,
+    "TAB": sdl2.SDL_SCANCODE_TAB,
+    "BACKSPACE": sdl2.SDL_SCANCODE_BACKSPACE,
+    "INSERT": sdl2.SDL_SCANCODE_INSERT,
+    "DELETE": sdl2.SDL_SCANCODE_DELETE,
+    "HOME": sdl2.SDL_SCANCODE_HOME,
+    "END": sdl2.SDL_SCANCODE_END,
+    "PAGEUP": sdl2.SDL_SCANCODE_PAGEUP,
+    "PAGEDOWN": sdl2.SDL_SCANCODE_PAGEDOWN,
+    "CAPSLOCK": sdl2.SDL_SCANCODE_CAPSLOCK,
+    "SCROLLLOCK": sdl2.SDL_SCANCODE_SCROLLLOCK,
+    "PRINTSCREEN": sdl2.SDL_SCANCODE_PRINTSCREEN,
+    "MENU": sdl2.SDL_SCANCODE_APPLICATION
+}
+
+KEYS: dict = {
+    **ARROWS, **LETTERS,
+    **NUMBERS, **FUNCTION_KEYS,
+    **MODIFIER_KEYS, **NUMPAD_KEYS,
+    **PLUS_KEYS,
+}
+
+Keys: TypeAlias = KEYS # type: ignore
