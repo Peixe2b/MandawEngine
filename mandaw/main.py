@@ -7,10 +7,6 @@ from mandaw.core.color import Color, BasicColors
 from mandaw.utils.softwareRenderer import SoftwareRenderer
 
 
-__all__ = [
-    "Mandaw"
-]
-
 class Mandaw:
     def __init__(self, title="Mandaw", width=800, height=600, bg_color=Color(0, 0, 0)):
         sdl2.ext.init()
@@ -21,7 +17,7 @@ class Mandaw:
         self.running: bool = True
         
         self.world: Any = sdl2.ext.World()
-        self.window: Any = sdl2.ext.Window(self.title, size = (self.width, self.height))        
+        self.window: Any = sdl2.ext.Window(self.title, size=(self.width, self.height))        
         self.world.factory = sdl2.ext.SpriteFactory(sdl2.ext.SOFTWARE)
 
         self.__initialize()
