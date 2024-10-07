@@ -5,11 +5,6 @@ from sdl2 import SDL_GetKeyboardState, SDL_GetMouseState, SDL_Error
 from mandaw.interfaces.idevice import IDevice
 
 
-all = [
-    "Mouse", "Keyboard",
-    "Input"
-]
-
 class Mouse(IDevice):
     def __init__(self) -> None:
         self.x, self.y = 0

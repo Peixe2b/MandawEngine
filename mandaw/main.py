@@ -1,38 +1,34 @@
 import os
 import sdl2, sdl2.ext
 
-from typing import Any, Union
+from typing import Any
+from mandaw.core.color import Color
+from mandaw.core.window import Window
 from mandaw.core.gameTime import GameTime
-from mandaw.core.color import Color, BasicColors
 from mandaw.utils.softwareRenderer import SoftwareRenderer
 
 
-__all__ = [
-    "Mandaw"
-]
-
 class Mandaw:
-    def __init__(self, title="Mandaw", width=800, height=600, bg_color=Color(0, 0, 0)):
+    def __init__(self, title="Mandaw", width=800, height=600):
         sdl2.ext.init()
-        self.title: str = title
-        self.width: int = width
-        self.height: int = height
-        self.bg_color: Union[Color, BasicColors] = bg_color
+        self.window = Window(title, width, height)
         self.running: bool = True
+        self.window.show()
         
-        self.world: Any = sdl2.ext.World()
         self.window: Any = sdl2.SDL_CreateWindow(self.title, size = (self.width, self.height))        
         self.world.factory = sdl2.ext.SpriteFactory(sdl2.ext.SOFTWARE)
 
         self.__initialize()
         self.sprite_renderer: SoftwareRenderer = SoftwareRenderer(self.window, self)
-        self.world.add_system(self.sprite_renderer)
         self.gameTime = GameTime()
     
     def update(self):
         self.__inputs()
         self.gameTime.updateTime()
         self.world.process()
+
+    def set_background_color(self, color: Color):
+        self.window.bg_color = color
 
     def __initialize(self): # Initalize all configurations 
         self.window.bg_color = self.bg_color

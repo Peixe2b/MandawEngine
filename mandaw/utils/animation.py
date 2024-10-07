@@ -4,10 +4,6 @@ from typing import List, Any
 from mandaw.utils.gameobject import GameObject
 
 
-__al__ = [
-    "Animation"
-]
-
 class Animation(GameObject):
     def __init__(self, window: Any, anim_folder: str, anim_time: int):
         super().__init__(window)

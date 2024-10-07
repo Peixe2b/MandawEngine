@@ -1,28 +1,16 @@
-import sdl2, sdl2.ext
-
 from typing import Any
 from mandaw.core.color import Color
 
 
-__all__ = [
-    "GameObject"
-]
-
 class GameObject(object):
     def __init__(self, window, width=20, height=20, x=0, y=0, color=Color(255, 255, 255)):
-        self.entity: Any = sdl2.ext.Entity(world=window.world)
         self.window: Any = window
         self.width: int = width
         self.height: int = height
         self.x: int = x
         self.y: int = y
         self.color: Color = color
-        self.entity.sprite = self.entity.world.factory.from_color(self.color, (0, 0))
     
-    def draw(self):
-        self.entity.sprite = self.entity.world.factory.from_color(self.color, (self.width, self.height))
-        self.entity.sprite.position = self.x, self.y
-
     def collide(self, other_rect):
         left, top, right, bottom = self.entity.sprite.area
         bleft, btop, bright, bbottom = other_rect.entity.sprite.area
