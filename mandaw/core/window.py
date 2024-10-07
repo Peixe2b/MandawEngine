@@ -1,54 +1,60 @@
-from typing import Union
-from mandaw.core.errors import MandawSDLError, MandawException
+from typing import Any, Union
+from mandaw.core.errors import MandawSDLError
 from mandaw.core.color import Color, BasicColors
 
 from sdl2 import (
     SDL_Init,
     SDL_CreateWindow,
     SDL_GetVideoDriver,
-    SDL_WINDOW_SHOWN,
     SDL_DestroyWindow,
     SDL_Quit,
     SDL_Event,
     SDL_PollEvent,
     SDL_QUIT,
-    SDL_INIT_VIDEO
+    SDL_INIT_VIDEO,
+    SDL_WINDOWPOS_CENTERED,
+    SDL_WINDOW_SHOWN,
+    SDL_WINDOW_OPENGL
 )
 
 
-class Window(object):
-    def __init__(self, title=b"Mandaw", width=800, height=600) -> None:
+class WindowManager(object):
+    def __init__(self, title=b"Mandaw", width=800, height=600, flag: int=0 | 1) -> None:
         SDL_Init(SDL_INIT_VIDEO)	
-        self.__title = title
+        self.__title = title.encode()
         self.__width: int = width
         self.__height: int = height
+        self.__flag = flag
         self.bg_color: Union[Color, BasicColors] = BasicColors.BLACK.value
         self.window = None
-
+        self.running: bool = True
         self.videoDevice = SDL_GetVideoDriver(0)
+
         if not self.videoDevice:
             raise MandawSDLError("Unable to get video driver")
 
     def show(self):
         self.window = SDL_CreateWindow(
-            self.__title, 50, 50,
+            self.__title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
             self.__width, self.__height,
-            SDL_WINDOW_SHOWN
+            self.get_window_mode()
         )
         if not self.window:
             raise MandawSDLError("Unable to create window")
 
     def gameLoop(self):
-        running = True
-        while running:
+        while self.running:
             event = SDL_Event()
             while SDL_PollEvent(event) != 0:
                 if event.type == SDL_QUIT:
-                    running = False
+                    self.running = False
         self.cleanup()
 
+    def get_window_mode(self) -> Any:
+        if self.__flag == 0:
+            return SDL_WINDOW_SHOWN
+        return SDL_WINDOW_OPENGL    
+
     def cleanup(self):
-        if self.window:
-            SDL_DestroyWindow(self.window)
+        SDL_DestroyWindow(self.window)
         SDL_Quit()
-    
