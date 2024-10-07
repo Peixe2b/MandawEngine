@@ -11,8 +11,8 @@ class IDevice(ABC):
         pass
 
     @abstractmethod
-    def get_info(self):
-        pass
+    def get_info(self) -> dict:
+        return {}
 
     @abstractmethod
     def disconnect(self):

@@ -12,16 +12,12 @@ class Mandaw:
     def __init__(self, title="Mandaw", width=800, height=600):
         sdl2.ext.init()
         self.window = Window(title, width, height)
-        self.running: bool = True
-        self.window.show()
-        
-        self.window: Any = sdl2.SDL_CreateWindow(self.title, size = (self.width, self.height))        
-        self.world.factory = sdl2.ext.SpriteFactory(sdl2.ext.SOFTWARE)
-
-        self.__initialize()
         self.sprite_renderer: SoftwareRenderer = SoftwareRenderer(self.window, self)
         self.gameTime = GameTime()
-    
+        self.running: bool = True
+        self.__initialize()
+        self.window.show()
+            
     def update(self):
         self.__inputs()
         self.gameTime.updateTime()
