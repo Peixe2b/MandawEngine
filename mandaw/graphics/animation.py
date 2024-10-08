@@ -1,7 +1,7 @@
 import os
 
 from typing import List, Any
-from mandaw.utils.gameobject import GameObject
+from mandaw.utils.game_object import GameObject
 
 
 class Animation(GameObject):
@@ -21,7 +21,7 @@ class Animation(GameObject):
     def draw(self):
         pass
     
-    def __update_frames(self):
+    def update_frames(self):
         pass
 
 

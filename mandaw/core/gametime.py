@@ -6,11 +6,11 @@ class GameTime:
     def __init__(self):
         self.start, self.__now = time(), SDL_GetTicks()
         self.__last: int = 0
-        self.__dt: int = 0
+        self.delta_time: int = 0
     
-    def updateTime(self):
+    def update_time(self):
         self.__last, self.__now = self.__now, SDL_GetTicks()
-        self.__dt = int(
+        self.delta_time = int(
             (self.__now - self.__last) * 1000 / SDL_GetPerformanceFrequency()
         )
 

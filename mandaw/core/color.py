@@ -1,9 +1,8 @@
-import sdl2.ext # from ext imoort Color
-
+from sdl2 import SDL_Color
 from enum import Enum
 
 
-class Color(sdl2.ext.Color):
+class Color(SDL_Color):
     def __init__(self, r: int, g: int, b: int, a: int=255):
         super().__init__(
             r, g, b, a

@@ -69,4 +69,4 @@ KEYS: dict = {
     **PLUS_KEYS,
 }
 
-Keys: TypeAlias = KEYS # type: ignore
+Keys: TypeAlias = KEYS  # type: ignore

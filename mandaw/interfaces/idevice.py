@@ -7,7 +7,7 @@ class IDevice(ABC):
         pass
 
     @abstractmethod
-    def get_pressed(self):
+    def pressed(self):
         pass
 
     @abstractmethod

@@ -28,9 +28,9 @@ class WindowManager(object):
         self.bg_color: Union[Color, BasicColors] = BasicColors.BLACK.value
         self.window = None
         self.running: bool = True
-        self.videoDevice = SDL_GetVideoDriver(0)
+        self.video_device = SDL_GetVideoDriver(0)
 
-        if not self.videoDevice:
+        if not self.video_device:
             raise MandawSDLError("Unable to get video driver")
 
     def show(self):
@@ -42,7 +42,7 @@ class WindowManager(object):
         if not self.window:
             raise MandawSDLError("Unable to create window")
 
-    def gameLoop(self):
+    def game_loop(self):
         while self.running:
             event = SDL_Event()
             while SDL_PollEvent(event) != 0:

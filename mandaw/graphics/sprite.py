@@ -1,4 +1,4 @@
-from mandaw.utils.gameobject import GameObject
+from mandaw.utils.game_object import GameObject
 
 
 class Sprite(GameObject):
