@@ -13,7 +13,6 @@ class Mandaw:
     def update(self):
         self.window_manager.game_loop()
         self.gameTime.updateTime()
-        self.world.process()
 
     def __initialize(self):
         path: str = os.path.dirname(os.path.abspath(__file__))
