@@ -1,5 +1,7 @@
 from typing import Any, Union
+
 from mandaw.core.errors import MandawSDLError
+from mandaw.core.gametime import GameTime
 from mandaw.core.color import Color, BasicColors
 
 from sdl2 import (
@@ -23,13 +25,14 @@ from sdl2 import (
 
 class WindowManager(object):
     def __init__(self, title=b"Mandaw", width=800, height=600, flag: int=0 | 1) -> None:
-        SDL_Init(SDL_INIT_VIDEO)	
+        SDL_Init(SDL_INIT_VIDEO)
         self.__title = title.encode()
         self.__width: int = width
         self.__height: int = height
         self.__flag = flag
         self.bg_color: Union[Color, BasicColors] = BasicColors.BLACK.value
         self.window = None
+        self.game_time = GameTime()
         self.running: bool = True
         self.video_device = SDL_GetVideoDriver(0)
         self.__surface = SDL_GetWindowSurface(self.window)
@@ -48,11 +51,12 @@ class WindowManager(object):
 
     def game_loop(self):
         while self.running:
+            self.game_time.update_time()
             event = SDL_Event()
             while SDL_PollEvent(event) != 0:
                 if event.type == SDL_QUIT:
                     self.running = False
-            SDL_UpdateWindowSurface(self.window)
+            SDL_UpdateWindowSurface(self.__surface)
         self.cleanup()
 
     def get_window_mode(self) -> Any:
@@ -65,5 +69,6 @@ class WindowManager(object):
             SDL_DestroyWindow(self.window)
         SDL_Quit()
 
+    @property
     def get_surface(self) -> Any:
         return self.__surface
