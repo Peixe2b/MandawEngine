@@ -56,7 +56,7 @@ class WindowManager(object):
             while SDL_PollEvent(event) != 0:
                 if event.type == SDL_QUIT:
                     self.running = False
-            SDL_UpdateWindowSurface(self.__surface)
+            SDL_UpdateWindowSurface(self.window)
         self.cleanup()
 
     def get_window_mode(self) -> Any:
@@ -69,6 +69,5 @@ class WindowManager(object):
             SDL_DestroyWindow(self.window)
         SDL_Quit()
 
-    @property
     def get_surface(self) -> Any:
         return self.__surface
