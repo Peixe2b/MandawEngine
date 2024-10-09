@@ -4,12 +4,15 @@ from mandaw.core.color import Color, BasicColors
 
 from sdl2 import (
     SDL_Init,
+    SDL_WasInit,
     SDL_CreateWindow,
     SDL_GetVideoDriver,
     SDL_DestroyWindow,
     SDL_Quit,
     SDL_Event,
     SDL_PollEvent,
+    SDL_GetWindowSurface,
+    SDL_UpdateWindowSurface,
     SDL_QUIT,
     SDL_INIT_VIDEO,
     SDL_WINDOWPOS_CENTERED,
@@ -29,6 +32,7 @@ class WindowManager(object):
         self.window = None
         self.running: bool = True
         self.video_device = SDL_GetVideoDriver(0)
+        self.__surface = SDL_GetWindowSurface(self.window)
 
         if not self.video_device:
             raise MandawSDLError("Unable to get video driver")
@@ -48,6 +52,7 @@ class WindowManager(object):
             while SDL_PollEvent(event) != 0:
                 if event.type == SDL_QUIT:
                     self.running = False
+            SDL_UpdateWindowSurface(self.window)
         self.cleanup()
 
     def get_window_mode(self) -> Any:
@@ -56,5 +61,9 @@ class WindowManager(object):
         return SDL_WINDOW_OPENGL    
 
     def cleanup(self):
-        SDL_DestroyWindow(self.window)
+        if SDL_WasInit(SDL_INIT_VIDEO):
+            SDL_DestroyWindow(self.window)
         SDL_Quit()
+
+    def get_surface(self) -> Any:
+        return self.__surface

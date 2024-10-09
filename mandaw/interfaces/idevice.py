@@ -3,17 +3,14 @@ from abc import ABC, abstractmethod
 
 class IDevice(ABC):
     @abstractmethod
-    def initialize(self):
+    def press(self, input):
         pass
 
     @abstractmethod
-    def pressed(self):
+    def update(self):
         pass
 
     @abstractmethod
     def get_info(self) -> dict:
         return {}
 
-    @abstractmethod
-    def disconnect(self):
-        pass

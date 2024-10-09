@@ -20,7 +20,6 @@ def vector_distance(vector1: Vector2, vector2: Vector2) -> float:
     dy = (vector1.y - vector2.y)**2
     return sqrt(dx + dy)
 
-
 def make_vector(x: int, y: int, name: Union[None, str]="") -> Union[Vector2, NamedVector2]:
     if name == "" or name is None:
         return Vector2(x, y)

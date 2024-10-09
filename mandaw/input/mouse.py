@@ -1,7 +1,10 @@
-from typing import Any
+from typing import Any, TypeAlias
 from mandaw.interfaces.idevice import IDevice
-from sdl2 import SDL_GetMouseState
+from sdl2 import SDL_GetMouseState, SDL_BUTTON_LEFT, SDL_BUTTON_RIGHT
 
+
+BUTTON_RIGHT: TypeAlias = SDL_BUTTON_RIGHT # type: ignore
+BUTTON_LEFT: TypeAlias = SDL_BUTTON_LEFT # type: ignore
 
 class Mouse(IDevice):
     def __init__(self) -> None:
@@ -10,21 +13,18 @@ class Mouse(IDevice):
         self.__is_visible = True
         self.__mouse_state: Any = SDL_GetMouseState(None)
 
-    def initialize(self):
-        pass
+    def update(self):
+        self.__mouse_state = SDL_GetMouseState(None)
     
-    def pressed(self):
-        return super().pressed()
-
+    def pressed(self, input):
+        return (input in [BUTTON_RIGHT, BUTTON_LEFT])
+    
     def get_info(self) -> dict:
         return {
             "cursor_x": self.x, "cursor_y": self.y,
             "mouseState": self.__mouse_state, "isVisible": self.__is_visible
         }
-    
-    def disconnect(self):
-        return super().disconnect()
-    
+        
     def set_pos(self, x: int, y: int) -> None:
         self.x = x
         self.y = y

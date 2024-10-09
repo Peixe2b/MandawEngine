@@ -20,5 +20,5 @@ class Mandaw:
         self.window_manager.show()
     
     @staticmethod
-    def isRunning(self) -> bool:
+    def is_running(self) -> bool:
         return self.running
